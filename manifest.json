@@ -1,0 +1,27 @@
+{
+    "name": "O-Spreadsheet Chrome Extension",
+    "version": "1.0",
+    "description": "Do Things",
+    "permissions": ["storage", "activeTab", "tabs", "http://localhost:8000/*"],
+    "icons": {
+        "128": "images/icon128.png",
+        "48": "images/icon48.png"
+    },
+    "web_accessible_resources": [],
+    "manifest_version": 2,
+    "background": {
+        "scripts": ["background.js"]
+    },
+    "content_scripts": [
+        {
+            "js": ["content.js"],
+            "matches": [
+                "http://127.0.0.1:8080/demo/",
+                "http://localhost:8080/demo/"
+            ]
+        }
+    ],
+    "browser_action": {
+        "default_icon": "images/icon48.png"
+    }
+}
