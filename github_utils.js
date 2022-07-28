@@ -9,7 +9,7 @@ window.addEventListener("keydown", (e) => {
     console.log(repo);
 
     const branch = document.querySelectorAll(".commit-ref")[1].title.replace(repo + ":", "");
-    const enterprise = branch.replace(/(.*?)-/, "$1-spreadsheet");
+    const enterprise = branch.replace(/(.*?)-/, "$1-spreadsheet-");
 
     const strForClipboard = `<b>pr: </b><a href=${pr}>${pr}</a> </br><b>branch: </b>${branch}</br><b>enterprise: </b>${enterprise}`
 
