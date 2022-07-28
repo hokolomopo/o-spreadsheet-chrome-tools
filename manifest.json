@@ -1,7 +1,7 @@
 {
     "name": "O-Spreadsheet Chrome Extension",
     "version": "1.0",
-    "description": "Do Things",
+    "description": "Do Things. Ctrl + M to clear & reload spreadsheet",
     "permissions": ["storage", "activeTab", "tabs", "http://localhost:8000/*"],
     "icons": {
         "128": "images/icon128.png",
@@ -15,10 +15,11 @@
     "content_scripts": [
         {
             "js": ["content.js"],
-            "matches": [
-                "http://127.0.0.1:8080/demo/",
-                "http://localhost:8080/demo/"
-            ]
+            "matches": ["http://127.0.0.1:8080/demo/", "http://localhost:8080/demo/"]
+        },
+        {
+            "js": ["github_utils.js"],
+            "matches": ["https://github.com/odoo/o-spreadsheet/pull/*"]
         }
     ],
     "browser_action": {
