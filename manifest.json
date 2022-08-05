@@ -18,8 +18,12 @@
             "matches": ["http://127.0.0.1:8080/demo/", "http://localhost:8080/demo/"]
         },
         {
-            "js": ["github_utils.js"],
+            "js": ["github_o_spreadsheet_pr.js"],
             "matches": ["https://github.com/odoo/o-spreadsheet/pull/*"]
+        },
+        {
+            "js": ["github_o_spreadsheet_pr_create.js"],
+            "matches": ["https://github.com/odoo/o-spreadsheet/compare/*"]
         }
     ],
     "browser_action": {
