@@ -24,6 +24,14 @@
         {
             "js": ["github_o_spreadsheet_pr_create.js"],
             "matches": ["https://github.com/odoo/o-spreadsheet/compare/*"]
+        },
+        {
+            "js": ["github_enterprise_pr_create.js"],
+            "matches": ["https://github.com/odoo/enterprise/compare/*"]
+        },
+        {
+            "js": ["github_enterprise_pr.js"],
+            "matches": ["https://github.com/odoo/enterprise/pull/*"]
         }
     ],
     "browser_action": {
