@@ -7,14 +7,15 @@ window.addEventListener("keydown", (e) => {
 
     let text = textArea.textContent;
 
-    const odooTaskRegex = /[\n]*[a-zA-Z]*([0-9]*)[\n]*(?=## Description)/;
+    const odooTaskRegex = /[\n]*[a-zA-Z\s]*([0-9]*)[\n]*(?=## Description)/;
     const odooTaskId = text.match(odooTaskRegex)[1];
     if(!odooTaskId){
       console.warn("Odoo task ID not found");
       return;
     }
 
-    text = text.replace(odooTaskRegex, "");
+    console.log(text.match(odooTaskRegex));
+    text = text.replace(odooTaskRegex, "\n\n");
     text = text.replace(/## Description.*(?=Odoo task ID)/s, "");
     text = text.replace(/TASK_ID/g, odooTaskId);
 
