@@ -14,8 +14,10 @@ window.addEventListener("keydown", (e) => {
     if (e.key === "m" && e.ctrlKey) {
         const pr = window.location.href;
 
+        const url = window.location.href;
+        const location = url.includes("/odoo/enterprise") ? "enterprise" : "community";
 
-        const strForClipboard = `<b>pr: </b><a href=${pr}>${pr}</a> </br><b>enterprise: </b>${branch}`;
+        const strForClipboard = `<b>pr ${location}: </b><a href=${pr}>${pr}</a> </br><b>branch ${location}: </b>${branch}`;
 
         var type = "text/html";
         var blob = new Blob([strForClipboard], { type });

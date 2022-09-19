@@ -30,8 +30,11 @@
             "matches": ["https://github.com/odoo/enterprise/compare/*"]
         },
         {
-            "js": ["github_enterprise_pr.js"],
-            "matches": ["https://github.com/odoo/enterprise/pull/*"]
+            "js": ["github_odoo_pr.js"],
+            "matches": [
+                "https://github.com/odoo/enterprise/pull/*",
+                "https://github.com/odoo/odoo/pull/*"
+            ]
         }
     ],
     "browser_action": {
