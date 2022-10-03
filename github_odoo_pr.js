@@ -6,7 +6,8 @@ const branch = document.querySelectorAll(".commit-ref")[1].title.replace(/^.*\:/
 const copyButtons = document.querySelectorAll("clipboard-copy");
 for (const button of [...copyButtons]) {
     button.addEventListener("click", () => {
-      navigator.clipboard.writeText(branch);
+        console.log(`Copied branch name "${branch}"`);
+        navigator.clipboard.writeText(branch);
     });
 }
 
