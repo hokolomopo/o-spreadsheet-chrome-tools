@@ -1,24 +1,30 @@
 window.global = window;
-console.log("O-Spreadsheet Chrome Extension Loaded")
+console.log("O-Spreadsheet Chrome Extension Loaded");
 
 window.addEventListener("keydown", (e) => {
-  if (e.key === "m" && e.ctrlKey) {
-    const pr = window.location.href;
-    let repo = pr.replace(/.*?com\//, "");
-    repo = repo.replace(/\/pull\/[0-9]*/, "");
-    console.log(repo);
+    if (e.key === "m" && e.ctrlKey) {
+        const pr = window.location.href;
+        let repo = pr.replace(/.*?com\//, "");
+        repo = repo.replace(/\/pull\/[0-9]*/, "");
+        console.log(repo);
 
-    const branch = document.querySelectorAll(".commit-ref")[1].title.replace(repo + ":", "");
-    const enterprise = branch.replace(/(.*?)-/, "$1-spreadsheet-");
+        const branch = document.querySelectorAll(".commit-ref")[1].title.replace(repo + ":", "");
+        const enterprise = branch.replace(/(.*?)-/, "$1-spreadsheet-");
 
-    const strForClipboard = `<b>pr: </b><a href=${pr}>${pr}</a> </br><b>branch: </b>${branch}</br><b>enterprise: </b>${enterprise}`
+        const prStr = `<b>pr: </b><a href=${pr}>${pr}</a> </b>`;
+        const branchStr = `<b>branch: </b>${branch}`;
 
-    var type = "text/html";
-    var blob = new Blob([strForClipboard], { type });
-    var data = [new ClipboardItem({ [type]: blob })];
+        const runbotLink = `https://runbot.odoo.com/runbot/r-d-1?search=${enterprise}`;
+        const enterpriseBranchStr = `<b>enterprise: </b><a href=${runbotLink}>${enterprise}</a> </b>`;
 
-    navigator.clipboard.write(data);
+        const strForClipboard = prStr + "</br>" + branchStr + "</br>" + enterpriseBranchStr;
 
-    console.log({branch, enterprise, pr})
-  }
+        var type = "text/html";
+        var blob = new Blob([strForClipboard], { type });
+        var data = [new ClipboardItem({ [type]: blob })];
+
+        navigator.clipboard.write(data);
+
+        console.log({ branch, enterprise, pr });
+    }
 });
