@@ -9,9 +9,7 @@
     },
     "web_accessible_resources": ["o_spreadsheet_injected_script.js"],
     "manifest_version": 2,
-    "background": {
-        "scripts": ["background.js"]
-    },
+    "background": {},
     "content_scripts": [
         {
             "js": ["o_spreadsheet.js"],
