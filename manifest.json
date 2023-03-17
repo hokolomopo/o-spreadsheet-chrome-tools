@@ -19,7 +19,9 @@
         }
     ],
     "manifest_version": 3,
-    "background": {},
+    "background": {
+        "service_worker": "background.js"
+    },
     "content_scripts": [
         {
             "js": ["o_spreadsheet.js"],
@@ -60,6 +62,10 @@
         {
             "js": ["github_404.js"],
             "matches": ["https://github.com/odoo/*%5C*"]
+        },
+        {
+            "js": ["runbot_redirect_to_spreadsheet.js"],
+            "matches": ["https://*.odoo.com/*"]
         }
     ]
 }
