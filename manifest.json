@@ -26,6 +26,16 @@
             "matches": ["http://127.0.0.1:8080/demo/", "http://localhost:8080/demo/"]
         },
         {
+            "js": ["o_spreadsheet.js"],
+            "matches": [
+                "https://www.odoo.com/*",
+                "*://*.odoo.com/*",
+                "http://127.0.0.1:8069/*",
+                "http://localhost:8069/*"
+            ],
+            "include_globs": ["*spreadsheet_id=*"]
+        },
+        {
             "js": ["github_o_spreadsheet_pr.js"],
             "matches": ["https://github.com/odoo/o-spreadsheet/pull/*"]
         },
