@@ -2,13 +2,23 @@
     "name": "O-Spreadsheet Chrome Extension",
     "version": "1.0",
     "description": "Do Things. Ctrl + M to clear & reload spreadsheet",
-    "permissions": ["storage", "activeTab", "tabs", "http://localhost:8000/*"],
+    "permissions": ["storage", "activeTab", "tabs"],
     "icons": {
         "128": "images/icon128.png",
         "48": "images/icon48.png"
     },
-    "web_accessible_resources": ["o_spreadsheet_injected_script.js"],
-    "manifest_version": 2,
+    "action": {
+        "default_icon": "images/icon48.png"
+    },
+    "content_security_policy": {},
+    "host_permissions": ["http://localhost:8000/*"],
+    "web_accessible_resources": [
+        {
+            "resources": ["o_spreadsheet_injected_script.js"],
+            "matches": ["<all_urls>"]
+        }
+    ],
+    "manifest_version": 3,
     "background": {},
     "content_scripts": [
         {
@@ -25,7 +35,10 @@
         },
         {
             "js": ["github_enterprise_pr_create.js"],
-            "matches": ["https://github.com/odoo/enterprise/compare/*", "https://github.com/odoo/odoo/compare/*"]
+            "matches": [
+                "https://github.com/odoo/enterprise/compare/*",
+                "https://github.com/odoo/odoo/compare/*"
+            ]
         },
         {
             "js": ["github_odoo_pr.js"],
@@ -38,8 +51,5 @@
             "js": ["github_404.js"],
             "matches": ["https://github.com/odoo/*%5C*"]
         }
-    ],
-    "browser_action": {
-        "default_icon": "images/icon48.png"
-    }
+    ]
 }
