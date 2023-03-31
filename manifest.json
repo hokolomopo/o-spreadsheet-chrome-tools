@@ -42,7 +42,7 @@
             "matches": ["https://github.com/odoo/o-spreadsheet/pull/*"]
         },
         {
-            "js": ["github_o_spreadsheet_pr_create.js"],
+            "js": ["github_pr_create_helper.js", "github_o_spreadsheet_pr_create.js"],
             "matches": ["https://github.com/odoo/o-spreadsheet/compare/*"]
         },
         {

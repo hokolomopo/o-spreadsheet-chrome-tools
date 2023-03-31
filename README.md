@@ -28,6 +28,7 @@ Install extension on chrome :
 ### For PRs in spreadsheet/enterprise/odoo
 
 -   On PR creation, ctrl + M to format pr message/add a link to the corresponding odoo task
+    -   in o-spreadsheet, ctrl + M first adapt the target base to match the name of the branch
 -   On PR page, ctrl + M to put branch name/pr url into clipboard as HTML to paste it in corresponding odoo task
 -   On odoo/enterprise pr: modify "copy branch name to clipboard" button to not include prefix "odoo-dev:"
 
