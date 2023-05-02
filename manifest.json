@@ -66,6 +66,10 @@
         {
             "js": ["runbot_redirect_to_spreadsheet.js"],
             "matches": ["https://*.odoo.com/*"]
+        },
+        {
+            "js": ["odoo_customization.js"],
+            "matches": ["https://www.odoo.com/*"]
         }
     ]
 }
