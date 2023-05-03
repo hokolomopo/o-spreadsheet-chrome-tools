@@ -7,13 +7,11 @@ function injectStyle(css) {
 }
 
 injectStyle(`
-    .o_kanban_project_tasks {
-        .bg-warning {
-            background-color: rgba(var(--danger-rgb)) !important;
-        }
+    .o_kanban_project_tasks .bg-warning {
+        background-color: rgba(var(--danger-rgb)) !important;
+    }
 
-        .o_status.text-warning {
-            background-color: rgba(var(--danger-rgb)) !important;
-        }
+    .o_kanban_project_tasks .o_status.text-warning {
+        background-color: rgba(var(--danger-rgb)) !important;
     }
 `);
