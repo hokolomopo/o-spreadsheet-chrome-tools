@@ -3,13 +3,21 @@ console.log("O-Spreadsheet Chrome Extension Loaded");
 
 const branch = document.querySelectorAll(".commit-ref")[1].title.replace(/^.*\:/, "");
 
-const copyButtons = document.querySelectorAll("clipboard-copy");
-for (const button of [...copyButtons]) {
-    button.addEventListener("click", () => {
-        console.log(`Copied branch name "${branch}"`);
-        navigator.clipboard.writeText(branch);
-    });
+const processedButtons = [];
+function setupCopyBranchNameButton() {
+    const copyButtons = document.querySelectorAll("clipboard-copy");
+    for (const button of [...copyButtons]) {
+        if (processedButtons.includes(button)) continue;
+
+        processedButtons.push(button);
+        button.addEventListener("click", () => {
+            console.log(`Copied branch name "${branch}"`);
+            navigator.clipboard.writeText(branch);
+        });
+    }
 }
+setupCopyBranchNameButton();
+setInterval(setupCopyBranchNameButton, 500);
 
 window.addEventListener("keydown", (e) => {
     if (e.key === "m" && e.ctrlKey) {
