@@ -38,7 +38,7 @@
             "include_globs": ["*spreadsheet_id=*"]
         },
         {
-            "js": ["github_o_spreadsheet_pr.js"],
+            "js": ["util/toast.js", "github_o_spreadsheet_pr.js"],
             "matches": ["https://github.com/odoo/o-spreadsheet/pull/*"]
         },
         {
