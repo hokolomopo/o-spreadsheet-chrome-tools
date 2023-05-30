@@ -11,7 +11,7 @@ injectStyle(`
         background-color: rgba(var(--danger-rgb)) !important;
     }
 
-    .o_kanban_project_tasks .o_status.text-warning {
-        background-color: rgba(var(--danger-rgb)) !important;
+    .o_kanban_project_tasks .o_status_changes_requested {
+        color: rgba(var(--danger-rgb)) !important;
     }
 `);
