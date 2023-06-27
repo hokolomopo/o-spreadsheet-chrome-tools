@@ -41,4 +41,11 @@ waitForOSpreadsheetLoad(() => {
             return model.getters.getActiveCell();
         },
     });
+    Object.defineProperty(window, "coreCell", {
+        get: function () {
+            const sheetId = model.getters.getActiveSheetId();
+            const selection = model.getters.getSelectedZone();
+            return model.getters.getCell({ sheetId, col : selection.left, row : selection.top });
+        },
+    });
 });
