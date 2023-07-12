@@ -40,5 +40,6 @@ window.addEventListener("keydown", (e) => {
         navigator.clipboard.write(data);
 
         console.log({ branch, pr });
+        toast("Added PR info in the clipboard")
     }
 });
