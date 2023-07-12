@@ -12,7 +12,7 @@ window.addEventListener("keydown", (e) => {
 });
 
 function parsePRDescription(){
-  const textArea = document.querySelector("textarea");
+  const textArea = document.querySelector("textarea#pull_request_body");
 
   let text = textArea.textContent;
 

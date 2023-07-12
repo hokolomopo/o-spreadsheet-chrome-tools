@@ -7,17 +7,11 @@ function odooTaskUrl(taskId) {
 
 window.addEventListener("keydown", (e) => {
     if (e.key === "m" && e.ctrlKey) {
-        const textArea = document.querySelector("textarea");
+        const textArea = document.querySelector("textarea#pull_request_body");
 
         let text = textArea.textContent;
 
-        const lines = text.trim().split("\n");
-        const lastLine = lines[lines.length - 1];
-        const odooTaskId = lastLine.match(/([0-9]+)/)[0];
-        if (!odooTaskId) {
-            console.warn("Odoo task ID not found");
-            return;
-        }
+        const odooTaskId = text.match(/Task:(.+)/)[1].trim();
 
         text = text.replace(odooTaskId, odooTaskUrl(odooTaskId));
 
