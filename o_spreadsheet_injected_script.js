@@ -9,7 +9,10 @@ function waitForOSpreadsheetLoad(func) {
 }
 
 waitForOSpreadsheetLoad(() => {
-    const model = window.o_spreadsheet.__DEBUG__.model;
+    const model = window.o_spreadsheet?.__DEBUG__?.model;
+    if(!model){
+        return;
+    }
     window.model = model;
     window.getters = model.getters;
     window.dispatch = model.dispatch;
