@@ -16,7 +16,7 @@ function parsePRDescription(){
 
   let text = textArea.textContent;
 
-  const odooTaskRegex = /[\n]*[a-zA-Z\s]*([0-9]*)[\n]*(?=## Description)/;
+  const odooTaskRegex = /[\n]*[a-zA-Z\s:]*([0-9]*)[\n]*(?=## Description)/;
   const odooTaskId = text.match(odooTaskRegex)[1];
   if(!odooTaskId){
     console.warn("Odoo task ID not found");
@@ -25,7 +25,8 @@ function parsePRDescription(){
 
   console.log(text.match(odooTaskRegex));
   text = text.replace(odooTaskRegex, "\n\n");
-  text = text.replace(/## Description.*(?=Odoo task ID)/s, "");
+  text = text.replace(/## Description.*(?=Task)/s, "");
+
   text = text.replace(/TASK_ID/g, odooTaskId);
 
   text = "## Description\n\n" + text;
