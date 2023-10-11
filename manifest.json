@@ -70,6 +70,11 @@
         {
             "js": ["odoo_customization.js"],
             "matches": ["https://www.odoo.com/*"]
+        },
+        {
+            "js": ["runbot_dashboard_switch.js"],
+            "matches": ["https://*.odoo.com/*"],
+            "include_globs": ["*action=action_edit_dashboard*", "*dashboard_id=*"]
         }
     ]
 }

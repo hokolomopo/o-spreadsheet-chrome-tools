@@ -37,3 +37,6 @@ Install extension on chrome :
 -   Press ctrl + M from anywhere to be redirected to a random spreadsheet
     -   so open random Runbot => press ctrl + M to go to a spreadsheet to test stuff
     -   no need to connect or anything
+
+-   Press ctrl + L from a dashboard to be redirected to the edition of the dashboard
+    -   ctrl + L on the spreadsheet to go back to the dashboard
