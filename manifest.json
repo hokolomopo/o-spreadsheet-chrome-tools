@@ -46,6 +46,10 @@
             "matches": ["https://github.com/odoo/o-spreadsheet/compare/*"]
         },
         {
+            "js": ["github_pr_create_helper.js", "github_o_spreadsheet_pr_create.js"],
+            "matches": ["https://github.com/odoo/odoo/compare/*"]
+        },
+        {
             "js": ["github_enterprise_pr_create.js"],
             "matches": [
                 "https://github.com/odoo/enterprise/compare/*",
