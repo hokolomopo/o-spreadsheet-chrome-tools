@@ -27,7 +27,8 @@ function redirect() {
     const url = window.location.href;
 
     if (url.match(/odoo.com\/?$/)) {
-        const loginButton = document.querySelector("a[href='/web/login']");
+        const loginButton =
+            document.querySelector("a[href='/web/login']");
         if (loginButton) {
             loginButton.click();
             return;
@@ -36,9 +37,10 @@ function redirect() {
         window.location.href = url + (url.endsWith("/") ? "" : "/") + "web";
     } else if (url.match(/web\/login\/?/)) {
         console.log("login page");
-        const loginInput = document.querySelector("input[name='login']");
-        const passwordInput = document.querySelector("input[name='password']");
-        const submitButton = document.querySelector("button[type='submit']");
+        const loginForm = document.querySelector(".oe_login_form");
+        const loginInput = loginForm.querySelector("input[name='login']");
+        const passwordInput = loginForm.querySelector("input[name='password']");
+        const submitButton = loginForm.querySelector("button[type='submit']");
 
         loginInput.value = "admin";
         passwordInput.value = "admin";
