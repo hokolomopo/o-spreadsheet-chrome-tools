@@ -14,7 +14,7 @@ window.addEventListener("keydown", (e) => {
 function parsePRDescription(){
   const textArea = document.querySelector("textarea#pull_request_body");
 
-  let text = textArea.textContent;
+  let text = textArea.value;
 
   const odooTaskRegex = /[\n]*[a-zA-Z\s:]*([0-9]*)[\n]*(?=## Description)/;
   const odooTaskId = text.match(odooTaskRegex)[1];
@@ -33,5 +33,6 @@ function parsePRDescription(){
 
   console.log(text);
 
+  textArea.value = text;
   textArea.textContent = text;
 }

@@ -52,11 +52,12 @@ window.addEventListener("keydown", (e) => {
 function setupPRText(){
     const textArea = document.querySelector("textarea#pull_request_body");
 
-    let text = textArea.textContent;
+    let text = textArea.value;
 
     const odooTaskId = text.match(/Task:(.+)/)[1].trim();
 
     text = text.replace(odooTaskId, odooTaskUrl(odooTaskId));
 
+    textArea.value = text;
     textArea.textContent = text;
 }
