@@ -46,18 +46,11 @@ function redirect() {
         passwordInput.value = "admin";
         submitButton.click();
     }
-    // main web page
-    else if (url.includes("action=menu") || url.match(/web\#cids=1$/)) {
-        console.log("main page");
-        const documentAppIcon = document.querySelector('a[data-menu-xmlid="documents.menu_root"]');
-        if (!documentAppIcon) {
-            console.log("no document app icon found...");
-            return;
-        }
-        documentAppIcon.click();
-    }
     // document kanban view
-    else if (url.includes("model=documents.document") && url.includes("view_type=kanban")) {
+    else if (
+        (url.includes("model=documents.document") && url.includes("view_type=kanban")) ||
+        (url.includes(".com/odoo/documents") )
+    ) {
         const spreadsheetPreview = document.querySelector("div.o_document_spreadsheet");
         chrome.runtime.sendMessage({ type: "stopRedirect" });
         if (!spreadsheetPreview) {
@@ -66,6 +59,16 @@ function redirect() {
         }
 
         spreadsheetPreview.click();
+    }
+    // main web page
+    else if (url.includes(".com/web") || url.includes(".com/odoo")) {
+        console.log("main page");
+        const documentAppIcon = document.querySelector('a[data-menu-xmlid="documents.menu_root"]');
+        if (!documentAppIcon) {
+            console.log("no document app icon found...");
+            return;
+        }
+        documentAppIcon.click();
     } else {
         redirectToRoot();
     }
