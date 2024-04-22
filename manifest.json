@@ -34,8 +34,7 @@
                 "*://*.odoo.com/*",
                 "http://127.0.0.1:8069/*",
                 "http://localhost:8069/*"
-            ],
-            "include_globs": ["*spreadsheet_id=*"]
+            ]
         },
         {
             "js": ["util/toast.js", "github_o_spreadsheet_pr.js"],
