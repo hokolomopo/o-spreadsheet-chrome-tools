@@ -1,16 +1,16 @@
 window.global = window;
 console.log("O-Spreadsheet Chrome Extension Loaded");
 
-const branch = document.querySelectorAll(".commit-ref")[1].title.replace(/^.*\:/, "");
 
 const processedButtons = [];
 function setupCopyBranchNameButton() {
-    const copyButtons = document.querySelectorAll("clipboard-copy");
+    const copyButtons = document.querySelectorAll(".gh-header-meta clipboard-copy");
     for (const button of [...copyButtons]) {
         if (processedButtons.includes(button)) continue;
 
         processedButtons.push(button);
         button.addEventListener("click", () => {
+            const branch = document.querySelectorAll(".commit-ref")[1].title.replace(/^.*\:/, "");
             console.log(`Copied branch name "${branch}"`);
             navigator.clipboard.writeText(branch);
         });
