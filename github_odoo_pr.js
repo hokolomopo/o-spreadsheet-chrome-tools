@@ -26,6 +26,7 @@ window.addEventListener("keydown", (e) => {
         const url = window.location.href;
         const location = url.includes("/odoo/enterprise") ? "enterprise" : "community";
 
+        const branch = document.querySelectorAll(".commit-ref")[1].title.replace(/^.*\:/, "");
         const prStr = `<b>pr ${location}: </b><a href=${pr}>${pr}</a> </b>`;
 
         const runbotLink = `https://runbot.odoo.com/runbot/r-d-1?search=${branch}`;
