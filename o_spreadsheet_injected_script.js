@@ -58,4 +58,21 @@ waitForOSpreadsheetLoad(() => {
             return { sheetId, col : selection.left, row : selection.top };
         },
     });
+    Object.defineProperty(window, "pivotId", {
+        get: function () {
+            const position = model.getters.getActivePosition();
+            return model.getters.getPivotIdFromPosition(position);
+        },
+    });
+    Object.defineProperty(window, "pivot", {
+        get: function () {
+            const pivotId = window.pivotId;
+            return model.getters.getPivot(pivotId);
+        },
+    });
+    Object.defineProperty(window, "corePivot", {
+        get: function () {
+            return model.getters.getPivotCoreDefinition(window.pivotId);
+        },
+    });
 });
