@@ -75,4 +75,9 @@ waitForOSpreadsheetLoad(() => {
             return model.getters.getPivotCoreDefinition(window.pivotId);
         },
     });
+    Object.defineProperty(window, "target", {
+        get: function () {
+            return model.getters.getSelectedZones();
+        },
+    });
 });
