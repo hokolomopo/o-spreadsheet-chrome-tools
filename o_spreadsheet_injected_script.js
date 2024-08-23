@@ -58,6 +58,11 @@ waitForOSpreadsheetLoad(() => {
             return { sheetId, col : selection.left, row : selection.top };
         },
     });
+    Object.defineProperty(window, "position", {
+        get: function () {
+            return window.cellPosition;
+        },
+    });
     Object.defineProperty(window, "pivotId", {
         get: function () {
             const position = model.getters.getActivePosition();
