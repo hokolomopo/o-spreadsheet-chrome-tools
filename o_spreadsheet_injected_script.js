@@ -39,6 +39,11 @@ waitForOSpreadsheetLoad(() => {
             return model.getters.getFigure(window.sheetId, window.figureId);
         },
     });
+    Object.defineProperty(window, "chart", {
+        get: function () {
+            return model.getters.getChart(model.getters.getSelectedFigureId()).getDefinition();
+        },
+    });
     Object.defineProperty(window, "cell", {
         get: function () {
             return model.getters.getActiveCell();
