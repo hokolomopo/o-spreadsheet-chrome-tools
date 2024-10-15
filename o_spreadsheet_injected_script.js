@@ -9,13 +9,25 @@ function waitForOSpreadsheetLoad(func) {
 }
 
 waitForOSpreadsheetLoad(() => {
-    const model = window.o_spreadsheet?.__DEBUG__?.model;
-    if(!model){
+    if(!window.o_spreadsheet?.__DEBUG__?.model){
         return;
     }
-    window.model = model;
-    window.getters = model.getters;
-    window.dispatch = model.dispatch;
+
+    Object.defineProperty(window, "model", {
+        get: function () {
+            return window.o_spreadsheet?.__DEBUG__?.model;
+        },
+    });
+    Object.defineProperty(window, "getters", {
+        get: function () {
+            return model.getters;
+        },
+    });
+    Object.defineProperty(window, "dispatch", {
+        get: function () {
+            return model.dispatch;
+        },
+    });
 
     console.log("Model, Getters, and Dispatch now exposed in window");
 
