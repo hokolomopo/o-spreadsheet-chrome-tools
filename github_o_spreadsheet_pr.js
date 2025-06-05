@@ -17,7 +17,22 @@ window.addEventListener("keydown", (e) => {
         const runbotLink = `https://runbot.odoo.com/runbot/r-d-1?search=${enterprise}`;
         const enterpriseBranchStr = `<b>enterprise: </b><a href=${runbotLink}>${enterprise}</a> </b>`;
 
-        const strForClipboard = prStr + "</br>" + branchStr + "</br>" + enterpriseBranchStr;
+        const mergeStatus = getMergeBotStatus();
+        let mergeBotStatusImage = "";
+        if (mergeStatus) {
+            mergeBotStatusImage = `<a href="${mergeStatus.mergeBotLink}"><img src="${mergeStatus.imgSrc}" /></a>`;
+        }
+
+        // TODO: make something generic for o-spreadsheet, odoo & odoo-enterprise
+        const strForClipboard =
+            prStr +
+            "</br>" +
+            branchStr +
+            "</br>" +
+            enterpriseBranchStr +
+            "</br></br>" +
+            mergeBotStatusImage +
+            "</br></br>";
 
         var type = "text/html";
         var blob = new Blob([strForClipboard], { type });
@@ -25,7 +40,16 @@ window.addEventListener("keydown", (e) => {
 
         navigator.clipboard.write(data);
 
-        console.log({ branch, enterprise, pr });
-        toast("Added PR info in the clipboard")
+        console.log({ branch, enterprise, pr, strForClipboard });
+        toast("Added PR info in the clipboard");
     }
 });
+
+function getMergeBotStatus() {
+    const a = [...document.querySelectorAll("a")].find((a) => a.href?.includes("mergebot.odoo"));
+    if (!a) return undefined;
+    const img = a.querySelector("img");
+    const imgSrc = img?.dataset.canonicalSrc || img?.src;
+    const mergeBotLink = a.href;
+    return { imgSrc, mergeBotLink };
+}
