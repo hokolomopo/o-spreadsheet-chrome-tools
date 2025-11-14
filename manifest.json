@@ -12,12 +12,18 @@
     },
     "content_security_policy": {},
     "host_permissions": ["http://localhost:8000/*"],
-    "web_accessible_resources": [],
+    "web_accessible_resources": [
+        {
+            "resources": ["global_injected_script.js"],
+            "matches": ["<all_urls>"]
+        }
+    ],
     "manifest_version": 3,
     "background": {
         "service_worker": "background.js"
     },
     "content_scripts": [
+        { "js": ["global_hook.js"], "matches": ["<all_urls>"], "run_at": "document_start" },
         {
             "js": ["o_spreadsheet.js"],
             "matches": ["http://127.0.0.1:8080/demo/", "http://localhost:8080/demo/"]
