@@ -4,11 +4,7 @@ console.log("O-Spreadsheet Chrome Extension Loaded");
 window.addEventListener("keydown", (e) => {
     if (e.key === "m" && e.ctrlKey) {
         const pr = window.location.href;
-        let repo = pr.replace(/.*?com\//, "");
-        repo = repo.replace(/\/pull\/[0-9]*/, "");
-        console.log(repo);
-
-        const branch = document.querySelectorAll(".commit-ref")[1].title.replace(repo + ":", "");
+        const branch = getBranchInGithubPR();
         const enterprise = branch;
 
         const prStr = `<b>pr: </b><a href=${pr}>${pr}</a> </b>`;
@@ -25,12 +21,7 @@ window.addEventListener("keydown", (e) => {
 
         // TODO: make something generic for o-spreadsheet, odoo & odoo-enterprise
         const strForClipboard =
-            prStr +
-            "</br>" +
-            branchStr +
-            "</br>" +
-            enterpriseBranchStr +
-            "</br></br>";
+            prStr + "</br>" + branchStr + "</br>" + enterpriseBranchStr + "</br></br>";
 
         var type = "text/html";
         var blob = new Blob([strForClipboard], { type });
@@ -42,6 +33,20 @@ window.addEventListener("keydown", (e) => {
         toast("Added PR info in the clipboard");
     }
 });
+
+function getBranchInGithubPR() {
+    let branch = document.querySelectorAll(".commit-ref")[1]?.title; // Old github ?
+    if (!branch) {
+        const links = [...document.querySelectorAll("a")];
+        const branchLinks = links.filter((a) => a.className.includes("PullRequestBranchName")).map((a) => a.text);
+        branch = branchLinks[1];
+    }
+
+    if(!branch) {
+        throw new Error("Cannot find branch name in github PR page");
+    }
+    return branch.replace(/.*?:/, "");
+}
 
 // function getMergeBotStatus() {
 //     const a = [...document.querySelectorAll("a")].find((a) => a.href?.includes("mergebot.odoo"));
