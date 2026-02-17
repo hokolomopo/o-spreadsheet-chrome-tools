@@ -1,18 +1,21 @@
 window.global = window;
 console.log("O-Spreadsheet Chrome Extension Loaded");
 
-
 const processedButtons = [];
 function setupCopyBranchNameButton() {
-    const copyButtons = document.querySelectorAll(".gh-header-meta clipboard-copy");
+    const copyButtons = [...document.querySelectorAll(".gh-header-meta clipboard-copy")]; // old github
+    const copySvg = [...document.querySelectorAll("svg.octicon-copy")]; // new github
+    copyButtons.push(...copySvg.map((svg) => svg.closest("button")));
     for (const button of [...copyButtons]) {
         if (processedButtons.includes(button)) continue;
 
         processedButtons.push(button);
-        button.addEventListener("click", () => {
-            const branch = document.querySelectorAll(".commit-ref")[1].title.replace(/^.*\:/, "");
+        button.addEventListener("click", (ev) => {
+            const branch = getBranchInGithubPR();
             console.log(`Copied branch name "${branch}"`);
-            navigator.clipboard.writeText(branch);
+            setTimeout(() => {
+                navigator.clipboard.writeText(branch);
+            }, 0);
         });
     }
 }
@@ -41,7 +44,7 @@ window.addEventListener("keydown", (e) => {
         navigator.clipboard.write(data);
 
         console.log({ branch, pr });
-        toast("Added PR info in the clipboard")
+        toast("Added PR info in the clipboard");
     }
 });
 
@@ -49,11 +52,13 @@ function getBranchInGithubPR() {
     let branch = document.querySelectorAll(".commit-ref")[1]?.title; // Old github ?
     if (!branch) {
         const links = [...document.querySelectorAll("a")];
-        const branchLinks = links.filter((a) => a.className.includes("PullRequestBranchName")).map((a) => a.text);
+        const branchLinks = links
+            .filter((a) => a.className.includes("PullRequestBranchName"))
+            .map((a) => a.text);
         branch = branchLinks[1];
     }
 
-    if(!branch) {
+    if (!branch) {
         throw new Error("Cannot find branch name in github PR page");
     }
     return branch.replace(/.*?:/, "");
