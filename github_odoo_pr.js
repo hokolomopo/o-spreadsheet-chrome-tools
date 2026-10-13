@@ -53,7 +53,7 @@ function getBranchInGithubPR() {
     if (!branch) {
         const links = [...document.querySelectorAll("a")];
         const branchLinks = links
-            .filter((a) => a.className.includes("PullRequestBranchName"))
+            .filter((a) => a.className.includes("BranchName"))
             .map((a) => a.text);
         branch = branchLinks[1];
     }

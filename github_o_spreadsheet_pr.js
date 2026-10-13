@@ -38,7 +38,7 @@ function getBranchInGithubPR() {
     let branch = document.querySelectorAll(".commit-ref")[1]?.title; // Old github ?
     if (!branch) {
         const links = [...document.querySelectorAll("a")];
-        const branchLinks = links.filter((a) => a.className.includes("PullRequestBranchName")).map((a) => a.text);
+        const branchLinks = links.filter((a) => a.className.includes("BranchName")).map((a) => a.text);
         branch = branchLinks[1];
     }
 
