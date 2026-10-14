@@ -40,3 +40,14 @@ Install extension on chrome :
 
 -   Press ctrl + L from a dashboard to be redirected to the edition of the dashboard
     -   ctrl + L on the spreadsheet to go back to the dashboard
+
+### On odoo.com tasks
+
+-   On a project task page, a small copy button appears at the end of every `branch`
+    line in the Description (`branch:`, `branch enterprise:`, `branch community:`, and
+    the bare `enterprise:` line) — click it to put the clean branch name in the
+    clipboard, without the invisible characters the editor pads values with.
+    -   Buttons float in an overlay anchored to `document.body`; nothing is ever
+        injected into the description, which would otherwise be saved into the task.
+    -   Add new labels (`pr:`, `task:`, ...) to `TBC_LABEL_RULES` at the top of
+        `task_branch_copy/task_branch_copy.js`.

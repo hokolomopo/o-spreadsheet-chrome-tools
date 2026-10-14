@@ -74,6 +74,14 @@
         {
             "js": ["odoo_customization.js"],
             "matches": ["https://www.odoo.com/*"]
+        },
+        {
+            "js": [
+                "util/toast.js",
+                "task_branch_copy/task_branch_copy_overlay.js",
+                "task_branch_copy/task_branch_copy.js"
+            ],
+            "matches": ["https://www.odoo.com/*"]
         }
     ]
 }
